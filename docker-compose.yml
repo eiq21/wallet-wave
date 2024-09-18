@@ -1,0 +1,63 @@
+version: "3.7"
+
+networks:
+  wallet-wave:
+    name: wallet-wave
+    driver: bridge
+
+services:
+  securityapi:
+    image: security-api:1.0.0
+    container_name: ${DOCKER_REGISTRY-}wallet-security
+    mem_limit: 256m
+    mem_reservation: 128M
+    cpus: 0.25
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - 5000:80
+    networks:
+      - wallet-wave
+
+  paymentapi:
+    image: payment-api:1.0.0
+    container_name: ${DOCKER_REGISTRY-}wallet-pay
+    mem_limit: 256m
+    mem_reservation: 128M
+    cpus: 0.25
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - 7000:80
+    networks:
+      - wallet-wave
+
+  walletapi:
+    image: wallet-api:1.0.0
+    container_name: ${DOCKER_REGISTRY-}wallet-account
+    mem_limit: 256m
+    mem_reservation: 128M
+    cpus: 0.25
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - 9000:80
+    networks:
+      - wallet-wave
+
+  transactionapi:
+    image: transaction-api:1.0.0
+    container_name: ${DOCKER_REGISTRY-}wallet-transaction
+    mem_limit: 256m
+    mem_reservation: 128M
+    cpus: 0.25
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - 3000:80
+    networks:
+      - wallet-wave

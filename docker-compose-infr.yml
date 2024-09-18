@@ -1,0 +1,52 @@
+version: "3.7"
+
+networks:
+  wallet-wave:
+    name: wallet-wave
+    driver: bridge
+
+services:
+  gatewayapi:
+    image: gateway-api:1.0.0
+    container_name: ${DOCKER_REGISTRY-}wallet-gateway
+    mem_limit: 256m
+    mem_reservation: 128M
+    cpus: 0.25
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - 1000:80
+    networks:
+      - wallet-wave
+  config-server:
+    container_name: ${DOCKER_REGISTRY-}wallet-config
+    image: steeltoeoss/config-server
+    command: --spring.profiles.active=dev --spring.cloud.config.server.git.uri=https://github.com/eiq21/microservices-settings.git
+    mem_limit: 256m
+    mem_reservation: 128M
+    cpus: 0.25
+    ports:
+      - 8888:8888
+    networks:
+      - wallet-wave
+  consul-server:
+    container_name: ${DOCKER_REGISTRY-}wallet-discovery
+    image: consul:1.14
+    mem_limit: 256m
+    mem_reservation: 128M
+    cpus: 0.25
+    ports:
+      - 8500:8500
+      - 8600:8600/udp
+    networks:
+      - wallet-wave
+
+  rabbitmq:
+    container_name: ${DOCKER_REGISTRY-}wallet-bus
+    image: rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+    networks:
+      - wallet-wave

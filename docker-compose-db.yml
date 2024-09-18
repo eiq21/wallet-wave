@@ -1,0 +1,84 @@
+version: "3.7"
+
+networks:
+  wallet-wave:
+    name: wallet-wave
+    driver: bridge
+
+services:
+  mssql-local:
+    container_name: ${DOCKER_REGISTRY-}mssql-local
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    mem_limit: 1536m
+    mem_reservation: 128M
+    cpus: 1.0
+    ports:
+      - 1433:1433
+    environment:
+      - MSSQL_SA_PASSWORD=P@ssw0rd1234
+      - ACCEPT_EULA=Y
+    volumes:
+      - mssql-local-db:/var/opt/mssql
+    networks:
+      - wallet-wave
+  postgres-local:
+    image: postgres:alpine
+    container_name: ${DOCKER_REGISTRY-}postgres-local
+    mem_limit: 1536m
+    mem_reservation: 128M
+    cpus: 1.0
+    restart: always
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=P@ssw0rd1234
+      - POSTGRES_DB=postgres
+    volumes:
+      - postgres-local-db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - wallet-wave
+  # mysql-local:
+  #   image: mysql:latest
+  #   command: --default-authentication-plugin=mysql_native_password
+  #   container_name: ${DOCKER_REGISTRY-}mysql-local
+  #   mem_limit: 1536m
+  #   mem_reservation: 128M
+  #   cpus: 1.0
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=P@ssw0rd
+  #     - MYSQL_USER=admin
+  #     - MYSQL_PASSWORD=P@ssw0rd
+  #     - MYSQL_DATABASE=Payment
+  #   ports:
+  #     - 3306:3306
+  #   volumes:
+  #     - mysql-local-db:/var/lib/mysql
+  #   networks:
+  #     - wallet-wave
+  # mongodb-local:
+  #   image: mongo:latest
+  #   container_name: ${DOCKER_REGISTRY-}mongo-local
+  #   mem_limit: 1536m
+  #   mem_reservation: 128M
+  #   cpus: 1.0
+  #   ports:
+  #     - 27017:27017
+  #   volumes:
+  #     - mongo-local-db:/data/db
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=admin
+  #     - MONGO_INITDB_ROOT_PASSWORD=Passw0rd1234
+  #     - MONGO_INITDB_DATABASE=Transactions
+  #   networks:
+  #     - wallet-wave
+
+volumes:
+  mssql-local-db:
+    name: ${DOCKER_REGISTRY-}mssql-local
+  postgres-local-db:
+    name: ${DOCKER_REGISTRY-}postgres-local
+  # mysql-local-db:
+  #   name: ${DOCKER_REGISTRY-}mysql-local
+  # mongo-local-db:
+  #   name: ${DOCKER_REGISTRY-}mongo-local

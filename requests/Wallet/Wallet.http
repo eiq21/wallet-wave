@@ -1,0 +1,42 @@
+### Depositar dinero en una billetera
+
+### Creación de una billera
+@host=http://localhost:5280
+@walletId=1CF6FC6A-2BBD-4DCA-81BD-1F938BE73181
+POST @{{host}}/api/wallets
+Content-Type: application/json
+
+{
+  "userId": "1CF6FC6A-2BBD-4DCA-81BD-1F938BE73181"
+}
+
+
+POST @{{host}}/api/wallets/{{walletId}}/deposit
+Content-Type: application/json
+
+{
+  "amount": 100.00
+}
+
+### Retirar dinero de una billetera
+POST @{{host}}/api/wallets/{{walletId}}/withdraw
+Content-Type: application/json
+
+{
+  "amount": 50.00
+}
+
+### Transferir dinero a otra billetera
+POST @{{host}}/api/wallets/{{walletId}}/transfer
+Content-Type: application/json
+
+{
+  "recipientWalletId": "00000000-0000-0000-0000-000000000001",
+  "amount": 25.00
+}
+
+### Obtener el balance de una billetera
+GET @{{host}}/api/wallets/{{walletId}}/balance
+
+### Obtener las transacciones de una billetera
+GET @{{host}}/api/wallets/{{walletId}}/transactions
