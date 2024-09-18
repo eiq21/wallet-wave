@@ -18,7 +18,7 @@ Los **MS UX** son los microservicios que gestionan la experiencia de usuario fin
 
 - **Autenticación y Registro de Usuarios:** Permite a los usuarios registrarse y acceder a su billetera utilizando sus credenciales. Este proceso está asegurado mediante autenticación multifactor (MFA) y tokens de acceso.
 - **Gestión de Saldo:** Consultar y visualizar el saldo disponible en tiempo real.
-- **Transferencias y Pagos:** Enviar dinero a otros usuarios, realizar pagos a terceros y pagar servicios, todo gestionado a través de los **MS BS** de negocio.
+- **Transferencias y Retiros:** Enviar dinero a otros usuarios, realizar retiros, todo gestionado a través de los **MS BS** de negocio.
 - **Notificaciones:** Enviar alertas al dispositivo móvil del usuario o al correo electrónico sobre movimientos importantes, utilizando el **Notification MS UX**.
 
 #### 1.3 **Decisiones Tecnológicas**
