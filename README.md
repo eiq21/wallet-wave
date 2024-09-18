@@ -120,6 +120,9 @@ El uso de **CIAM** y **OAuth 2.0** permite una gestión segura de identidades, p
 
 ---
 
+#### 7 **Diseño de la solución**
+![alt text](https://github.com/eiq21/wallet-wave/blob/main/docs/diagram.png?raw=true)
+
 ### Conclusión
 
 La solución propuesta aprovecha lo mejor de la tecnología cloud en **Azure**, con una arquitectura **basada en microservicios** y **alta escalabilidad**. El diseño asegura una **alta disponibilidad**, **seguridad avanzada** y una **integración fluida** entre servicios cloud y sistemas legacy on-premise.
