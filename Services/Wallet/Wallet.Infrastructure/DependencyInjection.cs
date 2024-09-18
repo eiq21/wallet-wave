@@ -39,5 +39,4 @@ public static class DependencyInjection
         services.AddScoped<IWalletRepository, WalletRepository>();
         return services;
     }
-
 }

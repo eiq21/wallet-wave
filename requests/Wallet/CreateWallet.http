@@ -1,0 +1,10 @@
+@host=http://localhost:5280
+@jwtToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVucmlxdWVAYmNwLmNvbS5wZSIsInN1YiI6IlVzZXJJZCB7IFZhbHVlID0gM2MxNjMzZDYtYmNiZS00YTQ5LThmZmMtZjFkY2IwZjY3OTgwIH0iLCJqdGkiOiJkY2FmYTc0Yy1kZDViLTQwNjktOGU2My1kMjA5ZGYyYWU0YWIiLCJleHAiOjE3MjY2ODQ3NzAsImlzcyI6ImJjcC5saW1hLmNvbS5wZSIsImF1ZCI6InB1YmxpYyJ9.Qb2XAVZJJ_v6A24B1wLOLpqJ1uClm49oXdQMgZoEvSo
+
+POST {{host}}/api/wallets
+Content-Type: application/json
+Authorization: Bearer {{jwtToken}}
+
+{
+    "UserId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+}

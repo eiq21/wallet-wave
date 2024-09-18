@@ -1,0 +1,8 @@
+@host=http://localhost:5280
+@jwtToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVucmlxdWVAYmNwLmNvbS5wZSIsInN1YiI6IlVzZXJJZCB7IFZhbHVlID0gM2MxNjMzZDYtYmNiZS00YTQ5LThmZmMtZjFkY2IwZjY3OTgwIH0iLCJqdGkiOiJkY2FmYTc0Yy1kZDViLTQwNjktOGU2My1kMjA5ZGYyYWU0YWIiLCJleHAiOjE3MjY2ODQ3NzAsImlzcyI6ImJjcC5saW1hLmNvbS5wZSIsImF1ZCI6InB1YmxpYyJ9.Qb2XAVZJJ_v6A24B1wLOLpqJ1uClm49oXdQMgZoEvSo
+@walletId=09b2b712-32ad-4cf0-9283-d622458cc124
+POST {{host}}/api/wallets/{{walletId}}/withdraw
+Content-Type: application/json
+Authorization: Bearer {{jwtToken}}
+
+50.00

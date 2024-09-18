@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Wallet.Application.Features.CreateWallet;
 using Wallet.Application.Features.Deposit;
@@ -8,6 +9,7 @@ using Wallet.Application.Features.Transfer;
 namespace Wallet.API.Controllers.Wallets
 {
     [ApiController]
+    [Authorize]
     [Route("api/wallets")]
     public class WalletController : ControllerBase
     {
